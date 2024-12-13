@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { API_KEY, value_converter } from "../../../data";
-import thumbnail1 from "../../assets/img/thumbnail1.png";
 import { useEffect, useState } from "react";
 import moment from "moment";
 
@@ -22,20 +21,25 @@ const Feed = ({ category }) => {
 
   return (
     <div className="feed">
-      {console.log("Data ->", data)}
-      {data.map((item, index) => {
-        return (
-          <Link to={`video/${item.snippet.categoryId}/${item.id}`} className="card" key={item.id}>
-            <img src={item.snippet.thumbnails.medium.url} alt="" />
-            <h2>{item.snippet.localized.title}</h2>
-            <h3>{item.snippet.channelTitle}</h3>
-            <p>
-              {value_converter(item.statistics.viewCount)} views &bull;{" "}
-              {moment(item.snippet.publishedAt).fromNow()}
-            </p>
-          </Link>
-        );
-      })}
+      {data ? (
+        data?.map((item, index) => {
+          return (
+            <Link to={`video/${item.snippet.categoryId}/${item.id}`} className="card" key={item.id}>
+              <img src={item.snippet.thumbnails.medium.url} alt="" />
+              <h2>{item.snippet.localized.title}</h2>
+              <h3>{item.snippet.channelTitle}</h3>
+              <p>
+                {value_converter(item.statistics.viewCount)} views &bull;{" "}
+                {moment(item.snippet.publishedAt).fromNow()}
+              </p>
+            </Link>
+          );
+        })
+      ) : (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <h2>Something is Wrong!</h2>
+        </div>
+      )}
     </div>
   );
 };

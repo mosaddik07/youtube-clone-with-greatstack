@@ -22,7 +22,7 @@ const Sidebar = ({ sidebar, category, setCategory }) => {
           <img src={automobiles} alt="" />
           <p>Science & Technology</p>
         </div>
-        <div className={`side_link ${category === 30 ? "active" : ""}`} onClick={() => setCategory(1)}>
+        <div className={`side_link ${category === 0 ? "active" : ""}`} onClick={() => setCategory(0)}>
           <img src={sports} alt="" />
           <p>Film & Animation</p>
         </div>
@@ -33,10 +33,6 @@ const Sidebar = ({ sidebar, category, setCategory }) => {
         <div className={`side_link ${category === 10 ? "active" : ""}`} onClick={() => setCategory(10)}>
           <img src={music} alt="" />
           <p>Music</p>
-        </div>
-        <div className={`side_link ${category === 28 ? "active" : ""}`} onClick={() => setCategory(28)}>
-          <img src={blogs} alt="" />
-          <p>Science & Technology</p>
         </div>
         <hr />
       </div>
