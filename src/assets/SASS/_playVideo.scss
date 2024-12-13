@@ -1,0 +1,163 @@
+.play_video {
+  flex-basis: 69%;
+
+  iframe {
+    width: 100%;
+    height: 37vw;
+  }
+
+  h3 {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+  }
+}
+
+.play_video_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #5a5a5a;
+
+  img {
+    width: 20px;
+    margin-right: 8px;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+}
+
+.publisher {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  div {
+    flex: 1;
+    line-height: 18px;
+
+    p {
+      color: #000;
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+
+  img {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  span {
+    font-size: 13px;
+    color: #5a5a5a;
+  }
+
+  button {
+    background: #e50000;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 8px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+}
+
+.vid_description {
+  padding-left: 55px;
+  margin: 15px 0;
+
+  p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #5a5a5a;
+  }
+
+  h4 {
+    font-size: 14px;
+    color: #5a5a5a;
+    margin-top: 15px;
+  }
+}
+
+.subscribeBtn {
+  margin-left: 20px;
+}
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin: 20px 0;
+
+  img {
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin-bottom: 2px;
+
+    span {
+      font-size: 12px;
+      color: #5a5a5a;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+  }
+}
+
+.comment_action {
+  display: flex;
+  align-items: center;
+  margin: 8px;
+  font-size: 14px;
+
+  img {
+    border-radius: 0;
+    width: 20px;
+    margin-right: 5px;
+  }
+
+  span {
+    margin-right: 20px;
+    color: #5a5a5a;
+  }
+}
+
+@media (max-width: 900px) {
+  .play_video {
+    flex-basis: 100%;
+    iframe {
+      width: 100%;
+      height: 50vw;
+    }
+    h3 {
+      font-size: 17px;
+    }
+  }
+  .vid_description {
+    padding-left: 0;
+  }
+  .play_video .play_video_info {
+    margin-left: 0;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+}

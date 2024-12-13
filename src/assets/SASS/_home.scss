@@ -31,3 +31,11 @@
     font-size: 14px;
   }
 }
+
+@media (max-width: 900px) {
+  .large_container,
+  .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}

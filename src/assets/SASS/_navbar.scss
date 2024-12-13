@@ -46,3 +46,28 @@ nav {
     border-radius: 50%;
   }
 }
+
+@media (max-width: 900px) {
+  .menu_icon {
+    display: none;
+  }
+  .nav_right {
+    img {
+      display: none;
+    }
+    .user_icon {
+      display: block;
+      width: 30px;
+    }
+  }
+  .logo {
+    width: 90px;
+  }
+  .nav_middle {
+    .search_box {
+      input {
+        width: 100px;
+      }
+    }
+  }
+}

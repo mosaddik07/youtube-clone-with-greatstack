@@ -1,111 +1,41 @@
+import { Link } from "react-router-dom";
+import { API_KEY, value_converter } from "../../../data";
 import thumbnail1 from "../../assets/img/thumbnail1.png";
-import thumbnail2 from "../../assets/img/thumbnail2.png";
-import thumbnail3 from "../../assets/img/thumbnail3.png";
-import thumbnail4 from "../../assets/img/thumbnail4.png";
-import thumbnail5 from "../../assets/img/thumbnail5.png";
-import thumbnail6 from "../../assets/img/thumbnail6.png";
-import thumbnail7 from "../../assets/img/thumbnail7.png";
-import thumbnail8 from "../../assets/img/thumbnail8.png";
+import { useEffect, useState } from "react";
+import moment from "moment";
 
-const Feed = () => {
+const Feed = ({ category }) => {
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    const videoList_url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=BD&videoCategoryId=${category}&maxResults=50&key=${API_KEY}`;
+
+    await fetch(videoList_url)
+      .then((res) => res.json())
+      .then((data) => setData(data.items));
+  };
+
+  useEffect(() => {
+    fetchData();
+    console.log(data);
+  }, [category]);
+
   return (
     <div className="feed">
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
-      <div className="card">
-        <img src={thumbnail1} alt="" />
-        <h2>Best channel to learn coding that help you to be a web developer</h2>
-        <h3>GreatStack</h3>
-        <p>15k views &bull; 2 days ago</p>
-      </div>
+      {console.log("Data ->", data)}
+      {data.map((item, index) => {
+        return (
+          <Link to={`video/${item.snippet.categoryId}/${item.id}`} className="card" key={item.id}>
+            <img src={item.snippet.thumbnails.medium.url} alt="" />
+            <h2>{item.snippet.localized.title}</h2>
+            <h3>{item.snippet.channelTitle}</h3>
+            <p>
+              {value_converter(item.statistics.viewCount)} views &bull;{" "}
+              {moment(item.snippet.publishedAt).fromNow()}
+            </p>
+          </Link>
+        );
+      })}
     </div>
   );
 };
